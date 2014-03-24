@@ -19,3 +19,21 @@ c:\users\michal\documents\visual studio 2013\Projects\SietovyAnalyzator\SietovyA
 c:\users\michal\documents\visual studio 2013\Projects\SietovyAnalyzator\SietovyAnalyzator\bin\Debug\PcapDotNet.Core.Extensions.xml
 c:\users\michal\documents\visual studio 2013\Projects\SietovyAnalyzator\SietovyAnalyzator\bin\Debug\PcapDotNet.Packets.pdb
 c:\users\michal\documents\visual studio 2013\Projects\SietovyAnalyzator\SietovyAnalyzator\bin\Debug\PcapDotNet.Packets.xml
+E:\GitHub\NetworkAnalyzer\bin\Debug\SietovyAnalyzator.exe.config
+E:\GitHub\NetworkAnalyzer\obj\Debug\SietovyAnalyzator.exe
+E:\GitHub\NetworkAnalyzer\obj\Debug\SietovyAnalyzator.pdb
+E:\GitHub\NetworkAnalyzer\bin\Debug\SietovyAnalyzator.exe
+E:\GitHub\NetworkAnalyzer\bin\Debug\SietovyAnalyzator.pdb
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Base.pdb
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Base.xml
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Core.pdb
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Core.xml
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Core.Extensions.pdb
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Core.Extensions.xml
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Packets.pdb
+E:\GitHub\NetworkAnalyzer\bin\Debug\PcapDotNet.Packets.xml
+E:\GitHub\NetworkAnalyzer\obj\Debug\SietovyAnalyzator.csprojResolveAssemblyReference.cache
+E:\GitHub\NetworkAnalyzer\obj\Debug\SietovyAnalyzator.analyzator.resources
+E:\GitHub\NetworkAnalyzer\obj\Debug\SietovyAnalyzator.Properties.Resources.resources
+E:\GitHub\NetworkAnalyzer\obj\Debug\SietovyAnalyzator.csproj.GenerateResource.Cache
+E:\GitHub\NetworkAnalyzer\bin\Debug\NetworkAnalzyer.exe.config

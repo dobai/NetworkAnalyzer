@@ -7,13 +7,13 @@ using PcapDotNet.Core;
 using PcapDotNet.Base;
 using PcapDotNet.Packets;
 
-namespace SietovyAnalyzator
+namespace NetworkAnalzyer
 {
-    class Vrstva2
+    class InternetLayer
     {
         Data data;
 
-        public Vrstva2(Data d)
+        public InternetLayer(Data d)
         {
             data = d;
         }
