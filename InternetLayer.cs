@@ -11,32 +11,39 @@ namespace NetworkAnalzyer
 {
     class InternetLayer
     {
-        Data data;
+        private Byte[] packet;
+        private string sourceIP;
+        private string destinationIP;
 
-        public InternetLayer(Data d)
+        public string SourceIP { get { return sourceIP; } }
+        public string DestinationIP { get { return destinationIP; } }
+        public InternetLayer(Byte[] packet, int protocol)
         {
-            data = d;
-        }
-        int cislo = 0;
-        public void analyzuj(Packet paket)
-        {
-            string retazec = "";
-            int i = 1;
-            foreach(Byte bajt in paket)
+            this.packet = packet;
+            if (protocol == 2048)
             {
-                retazec += bajt.ToString("X2");
-                
-                if (i % 8 == 0)
-                {
-                    retazec += "    ";
-                    
-                }
-                else if (i % 1 == 0)
-                    retazec += "_";
-                i++;
-               
+                destinationIP = getDestinationIP();
+                sourceIP = getSourceIP();
             }
-            data.vlozZaznam(cislo++, "", "", "", "", "", retazec);
         }
+        private string getSourceIP()
+        {
+            string IP = "";
+            IP += packet[13].ToString("D") + ".";
+            IP += packet[14].ToString("D") + ".";
+            IP += packet[15].ToString("D") + ".";
+            IP += packet[16].ToString("D");
+            return IP;
+        }
+        private string getDestinationIP()
+        {
+            string IP = "";
+            IP += packet[17].ToString("D") + ".";
+            IP += packet[18].ToString("D") + ".";
+            IP += packet[19].ToString("D") + ".";
+            IP += packet[20].ToString("D");
+            return IP;
+        }
+
     }
 }

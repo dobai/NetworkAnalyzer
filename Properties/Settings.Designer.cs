@@ -35,5 +35,17 @@ namespace NetworkAnalzyer.Properties {
                 this["RecentlyOpened"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EthernetProtocolCodes {
+            get {
+                return ((string)(this["EthernetProtocolCodes"]));
+            }
+            set {
+                this["EthernetProtocolCodes"] = value;
+            }
+        }
     }
 }

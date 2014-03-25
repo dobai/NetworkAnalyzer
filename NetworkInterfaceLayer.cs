@@ -16,11 +16,13 @@ namespace NetworkAnalzyer
         private Byte[] raw;
         private int lenght;
         private int physicalLenght;
+        private int protocolID;
         private string type;
         private string sourceMAC;
         private string destinationMAC;
 
-        public byte[] Raw { get { return raw; } }
+        public int ProtocolID { get { return protocolID; } }
+        public Byte[] Raw { get { return raw; } }
         public int Lenght { get { return lenght; } }
         public int PhysicalLenght { get { return physicalLenght; } }
         public string Type { get { return type; } }
@@ -30,8 +32,7 @@ namespace NetworkAnalzyer
         public NetworkInterfaceLayer(Packet packet)
         {
             this.packet = packet;
-            raw = new Byte[packet.Count];
-            packet.CopyTo(raw, 0);
+            getRaw();
             lenght = packet.Count;
             physicalLenght = determinePhysicalLenght();
             type = getTypeOfFrame();
@@ -40,23 +41,36 @@ namespace NetworkAnalzyer
         }
         private int determinePhysicalLenght()
         {
-            BitArray bity = new BitArray(raw);
-            int i = 0;
-            int j = 0;
-            foreach (bool bit in bity )
+                if (lenght < 60)
+                    return 64;
+                else
+                    return lenght+4;
+        }  
+        private void getRaw()
+        {
+            Byte[] p = new Byte[packet.Count];
+            packet.CopyTo(p, 0);
+            if (packet[12] * 256 + packet[13] > 1500)
             {
-                if (bit) j++; else j = 0;
-                if (j != 5) i++; else j = 0;
+                raw = new Byte[packet.Count-14];
+                Buffer.BlockCopy(p, 14, raw, 0, packet.Count - 14);
             }
-            return i/8;
+            else
+            {
+                raw = new Byte[packet.Count - 17];
+                Buffer.BlockCopy(p, 17, raw, 0, packet.Count - 17);
+            }
         }
         private string getTypeOfFrame()
         {
-            if (packet[13] * 256 + packet[14] < 1500)
+            if (packet[12] * 256 + packet[13] > 1500)
+            {
+                protocolID = packet[12] * 256 + packet[13];
                 return "Ethernet II";
-            else if(packet[15] * 256 + packet[16] == 65535)
+            }
+            else if (packet[14] * 256 + packet[15] == 65535)
                 return "IEEE 802.3 - RAW";
-            else if (packet[15] * 256 + packet[16] == 43690)
+            else if (packet[14] * 256 + packet[15] == 43690)
                 return "IEEE 802.3 - LLC - SNAP";
             else
                 return "IEEE 802.3 - LLC";
@@ -64,7 +78,7 @@ namespace NetworkAnalzyer
         private string getSourceMAC()
         {
             string MAC = "";
-            for (int i = 7; i < 12; i++)
+            for (int i = 6; i < 12; i++)
                 MAC += packet[i].ToString("X2") + " ";
             return MAC.TrimEnd(' ');
         }

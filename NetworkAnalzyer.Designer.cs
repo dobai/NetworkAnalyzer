@@ -35,27 +35,30 @@
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bgbNacitaj = new System.Windows.Forms.ToolStripProgressBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dlgSubor = new System.Windows.Forms.OpenFileDialog();
+            this.listBox = new System.Windows.Forms.ListBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.súborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.koniecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otvoritToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zatvorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.naposledyOtvorenéToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.protokolylistBox = new System.Windows.Forms.ListBox();
+            this.koniecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zobraziťToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.výpisRámcovToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.výpisKomunikácieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.statusStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomocníkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.naposledyOtvorenéToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zatvorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.txtInfo = new System.Windows.Forms.TextBox();
             this.paketylistBox = new System.Windows.Forms.ListBox();
+            this.dlgSubor = new System.Windows.Forms.OpenFileDialog();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTabulka)).BeginInit();
             this.staBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -67,6 +70,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgTabulka
@@ -89,7 +93,7 @@
             this.dtgTabulka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgTabulka.Size = new System.Drawing.Size(498, 176);
             this.dtgTabulka.TabIndex = 0;
-            this.dtgTabulka.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTabulka_CellContentClick);
+            this.dtgTabulka.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTabulka_RowEnter);
             // 
             // txtHexPole
             // 
@@ -99,10 +103,11 @@
             this.txtHexPole.Multiline = true;
             this.txtHexPole.Name = "txtHexPole";
             this.txtHexPole.ReadOnly = true;
-            this.txtHexPole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtHexPole.Size = new System.Drawing.Size(320, 147);
+            this.txtHexPole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtHexPole.Size = new System.Drawing.Size(320, 148);
             this.txtHexPole.TabIndex = 3;
-            this.txtHexPole.Text = resources.GetString("txtHexPole.Text");
+            this.txtHexPole.WordWrap = false;
+            this.txtHexPole.Resize += new System.EventHandler(this.txtHexPole_Resize);
             // 
             // staBar
             // 
@@ -138,7 +143,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.protokolylistBox);
+            this.splitContainer1.Panel1.Controls.Add(this.listBox);
             this.splitContainer1.Panel1.Controls.Add(this.dtgTabulka);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip);
             this.splitContainer1.Panel1MinSize = 100;
@@ -146,15 +151,25 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.checkBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.numericUpDown);
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 150;
             this.splitContainer1.Size = new System.Drawing.Size(684, 390);
             this.splitContainer1.SplitterDistance = 206;
             this.splitContainer1.TabIndex = 5;
             // 
-            // dlgSubor
+            // listBox
             // 
-            this.dlgSubor.FileName = "openFileDialog1";
+            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBox.FormattingEnabled = true;
+            this.listBox.IntegralHeight = false;
+            this.listBox.Location = new System.Drawing.Point(12, 27);
+            this.listBox.Name = "listBox";
+            this.listBox.Size = new System.Drawing.Size(156, 176);
+            this.listBox.TabIndex = 2;
             // 
             // menuStrip
             // 
@@ -180,12 +195,6 @@
             this.súborToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.súborToolStripMenuItem.Text = "Súbor";
             // 
-            // koniecToolStripMenuItem
-            // 
-            this.koniecToolStripMenuItem.Name = "koniecToolStripMenuItem";
-            this.koniecToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.koniecToolStripMenuItem.Text = "Koniec";
-            // 
             // otvoritToolStripMenuItem
             // 
             this.otvoritToolStripMenuItem.Name = "otvoritToolStripMenuItem";
@@ -194,51 +203,28 @@
             this.otvoritToolStripMenuItem.Text = "Otvor...";
             this.otvoritToolStripMenuItem.Click += new System.EventHandler(this.otvoritToolStripMenuItem_Click);
             // 
+            // zatvorToolStripMenuItem
+            // 
+            this.zatvorToolStripMenuItem.Name = "zatvorToolStripMenuItem";
+            this.zatvorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zatvorToolStripMenuItem.Text = "Zatvor";
+            // 
+            // naposledyOtvorenéToolStripMenuItem
+            // 
+            this.naposledyOtvorenéToolStripMenuItem.Name = "naposledyOtvorenéToolStripMenuItem";
+            this.naposledyOtvorenéToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.naposledyOtvorenéToolStripMenuItem.Text = "Naposledy otvorené";
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
-            // textBox1
+            // koniecToolStripMenuItem
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(336, 147);
-            this.textBox1.TabIndex = 17;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.Location = new System.Drawing.Point(12, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer2.Panel1MinSize = 200;
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.paketylistBox);
-            this.splitContainer2.Panel2.Controls.Add(this.txtHexPole);
-            this.splitContainer2.Panel2MinSize = 320;
-            this.splitContainer2.Size = new System.Drawing.Size(660, 147);
-            this.splitContainer2.SplitterDistance = 336;
-            this.splitContainer2.TabIndex = 18;
-            // 
-            // protokolylistBox
-            // 
-            this.protokolylistBox.FormattingEnabled = true;
-            this.protokolylistBox.Location = new System.Drawing.Point(12, 27);
-            this.protokolylistBox.Name = "protokolylistBox";
-            this.protokolylistBox.Size = new System.Drawing.Size(156, 173);
-            this.protokolylistBox.TabIndex = 2;
-            this.protokolylistBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.koniecToolStripMenuItem.Name = "koniecToolStripMenuItem";
+            this.koniecToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.koniecToolStripMenuItem.Text = "Koniec";
             // 
             // zobraziťToolStripMenuItem
             // 
@@ -272,6 +258,11 @@
             this.výpisKomunikácieToolStripMenuItem.Text = "Výpis komunikácie";
             this.výpisKomunikácieToolStripMenuItem.Click += new System.EventHandler(this.výpisKomunikácieToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(170, 6);
+            // 
             // statusStripMenuItem
             // 
             this.statusStripMenuItem.Checked = true;
@@ -280,11 +271,6 @@
             this.statusStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.statusStripMenuItem.Text = "Stavový riadok";
             this.statusStripMenuItem.Click += new System.EventHandler(this.statusStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(170, 6);
             // 
             // pomocníkToolStripMenuItem
             // 
@@ -295,12 +281,6 @@
             this.pomocníkToolStripMenuItem.Name = "pomocníkToolStripMenuItem";
             this.pomocníkToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.pomocníkToolStripMenuItem.Text = "Pomocník";
-            // 
-            // oProgrameToolStripMenuItem
-            // 
-            this.oProgrameToolStripMenuItem.Name = "oProgrameToolStripMenuItem";
-            this.oProgrameToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-            this.oProgrameToolStripMenuItem.Text = "O programe...";
             // 
             // pomocToolStripMenuItem
             // 
@@ -313,29 +293,112 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(280, 6);
             // 
-            // naposledyOtvorenéToolStripMenuItem
+            // oProgrameToolStripMenuItem
             // 
-            this.naposledyOtvorenéToolStripMenuItem.Name = "naposledyOtvorenéToolStripMenuItem";
-            this.naposledyOtvorenéToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.naposledyOtvorenéToolStripMenuItem.Text = "Naposledy otvorené";
+            this.oProgrameToolStripMenuItem.Name = "oProgrameToolStripMenuItem";
+            this.oProgrameToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.oProgrameToolStripMenuItem.Text = "O programe...";
             // 
-            // zatvorToolStripMenuItem
+            // splitContainer2
             // 
-            this.zatvorToolStripMenuItem.Name = "zatvorToolStripMenuItem";
-            this.zatvorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.zatvorToolStripMenuItem.Text = "Zatvor";
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer2.Location = new System.Drawing.Point(12, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.txtInfo);
+            this.splitContainer2.Panel1MinSize = 200;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.paketylistBox);
+            this.splitContainer2.Panel2.Controls.Add(this.txtHexPole);
+            this.splitContainer2.Panel2MinSize = 320;
+            this.splitContainer2.Size = new System.Drawing.Size(660, 148);
+            this.splitContainer2.SplitterDistance = 336;
+            this.splitContainer2.TabIndex = 18;
+            // 
+            // txtInfo
+            // 
+            this.txtInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtInfo.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtInfo.Location = new System.Drawing.Point(0, 0);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ReadOnly = true;
+            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtInfo.Size = new System.Drawing.Size(336, 148);
+            this.txtInfo.TabIndex = 17;
+            this.txtInfo.WordWrap = false;
             // 
             // paketylistBox
             // 
             this.paketylistBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paketylistBox.FormattingEnabled = true;
+            this.paketylistBox.IntegralHeight = false;
             this.paketylistBox.Location = new System.Drawing.Point(0, 0);
             this.paketylistBox.Name = "paketylistBox";
-            this.paketylistBox.Size = new System.Drawing.Size(320, 147);
+            this.paketylistBox.Size = new System.Drawing.Size(320, 148);
             this.paketylistBox.TabIndex = 4;
             this.paketylistBox.Visible = false;
             // 
-            // analyzator
+            // dlgSubor
+            // 
+            this.dlgSubor.FileName = "openFileDialog1";
+            // 
+            // numericUpDown
+            // 
+            this.numericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDown.Enabled = false;
+            this.numericUpDown.Location = new System.Drawing.Point(531, 157);
+            this.numericUpDown.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(52, 20);
+            this.numericUpDown.TabIndex = 19;
+            this.numericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(449, 159);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Počet stĺpcov:";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(589, 158);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(83, 17);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "automaticky";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // NetworkAnalzyer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -345,7 +408,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(550, 350);
-            this.Name = "analyzator";
+            this.Name = "NetworkAnalzyer";
             this.Text = "Sieťový analyzátor";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgTabulka)).EndInit();
@@ -354,6 +417,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
@@ -364,6 +428,7 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,8 +449,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem koniecToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox protokolylistBox;
+        private System.Windows.Forms.TextBox txtInfo;
         private System.Windows.Forms.ToolStripMenuItem zatvorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem naposledyOtvorenéToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zobraziťToolStripMenuItem;
@@ -398,6 +462,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem oProgrameToolStripMenuItem;
         private System.Windows.Forms.ListBox paketylistBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ListBox listBox;
 
     }
 }
