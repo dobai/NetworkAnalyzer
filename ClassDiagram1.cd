@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NetworkAnalzyer.Analysis" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="NetworkAnalzyer.Analysis.IP" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Analysiscs.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAABAEAAICBAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Analysiscs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.ApplicationLayer">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.Data" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAgAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.Frame" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEAAIAAAACAAAAAAAAAAAQAAEAAgAAAAAAAAAAgA=</HashCode>
+      <FileName>Frame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.InternetLayer" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAEAAAAQAAAAAAABAAAAAAARAIAAAAAA=</HashCode>
+      <FileName>InternetLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.NetworkAnalzyer" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gYAAGA0AACTGABtAAADAAGAGIACQjQAAEA6UhAEAACQ=</HashCode>
+      <FileName>NetworkAnalzyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.NetworkInterfaceLayer" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAIQAAASAAAAEAABAgAQAIBAEAAAQBAMACAABA=</HashCode>
+      <FileName>NetworkInterfaceLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.Program" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.TransportLayer" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TransportLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.Properties.Resources" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkAnalzyer.Properties.Settings" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAIAAAAACBAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

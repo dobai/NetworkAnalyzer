@@ -58,7 +58,9 @@ namespace NetworkAnalzyer
             table.Columns.Add("Zdrojová MAC", typeof(string));
             table.Columns.Add("Cieľová MAC", typeof(string));
             table.Columns.Add("Dĺźka", typeof(string));
-            table.Columns.Add("Fyzická Dĺžka", typeof(string));
+            table.Columns.Add("Fyzická dĺžka", typeof(string));
+            table.Columns.Add(" ", typeof(string));
+
             foreach(Frame f in communication)
             {
                 table.Rows.Add(f.Id, f.networkInterface.Type, f.networkInterface.SourceMAC, f.networkInterface.DestinationMAC, f.networkInterface.Lenght, f.networkInterface.PhysicalLenght);
@@ -71,10 +73,22 @@ namespace NetworkAnalzyer
             List<string> list = new List<string>();
             foreach(Frame f in communication )
             {
-                if (!list.Contains(f.internet.SourceIP) && f.internet.SourceIP!=null)
+                if (!list.Contains(f.internet.SourceIP) && f.internet.SourceIP != null)
                     list.Add(f.internet.SourceIP);
             }
             return list;
+        }
+
+        public string getMaxIP()
+        {
+            List<string> list = getIPList();
+            Int32[] bytes = new Int32[list.Count];
+            foreach (Frame f in communication)
+            {
+                if (f.internet.SourceIP != null)
+                    bytes[list.FindIndex(x => x.StartsWith(f.internet.SourceIP))] += f.networkInterface.Lenght;
+            }
+            return list[bytes.ToList().IndexOf(bytes.Max())] + "    (" + bytes.Max() + " B)";
         }
     }
 }

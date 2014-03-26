@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -52,6 +53,10 @@ namespace NetworkAnalzyer
 
         private void naposledyOtvorene_Click(object sender, EventArgs e)
         {
+            ToolStripItem t = (ToolStripItem)sender;
+            string adr = t.Text.Split(' ')[0];
+
+            otvor(Properties.Settings.Default.RecentlyOpened[Int32.Parse(adr)]);
         }
 
         private void výpisRámcovToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,25 +89,39 @@ namespace NetworkAnalzyer
             }
         }
 
+        private void otvor(string cesta)
+        {
+            lblStatus.Text = "Pracujem...";
+            bgbNacitaj.Visible = true;
+            zatvorToolStripMenuItem_Click(this, new EventArgs());
+            analysis.analyse(cesta, 0);
+            dtgTabulka.DataSource = analysis.getDataTable();
+            dtgTabulka.AutoResizeColumns();
+            dtgTabulka.Columns[dtgTabulka.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            listBox.DataSource = analysis.getIPList();
+            txtAdresa.Text = analysis.getMaxIP();
+            this.Text = "Sieťový analyzátor - " + Path.GetFileName (cesta);
+            Properties.Settings.Default.RecentlyOpened.Remove(cesta);
+            Properties.Settings.Default.RecentlyOpened.Add(cesta);
+            loadRecentlyOpened();
+            lblStatus.Text = "Pripravený";
+            bgbNacitaj.Visible = false;
+        }
+
         private void otvoritToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dlgSubor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 try
                 {
-                    analysis.analyse(dlgSubor.FileName, 0);
-                    dtgTabulka.DataSource = analysis.getDataTable();
-                    listBox.DataSource = analysis.getIPList();
-                    this.listBox.DisplayMember = "Text";
-                    this.Text = "Sieťový analyzátor - " + dlgSubor.SafeFileName;
-                    Properties.Settings.Default.RecentlyOpened.Remove(dlgSubor.FileName);
-                    Properties.Settings.Default.RecentlyOpened.Add(dlgSubor.FileName);
-                    loadRecentlyOpened();
+                    otvor(dlgSubor.FileName);
                 }
                 catch (Exception ex)
                 {
+                    bgbNacitaj.Visible = false;
                     this.Text = "Sieťový analyzátor";
                     MessageBox.Show("Pri otváraní súboru nastala chyba. \n Súbor neexistuje alebo je poškodený. \n\n" + ex.Message, "Chyba pri otváraní súboru", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblStatus.Text = "Pripravený";
                 }
             }
 
@@ -135,7 +154,7 @@ namespace NetworkAnalzyer
         {
             string s = BitConverter.ToString(analysis.getFrame(e.RowIndex).Raw);
             txtHexPole.Text = formatuj(s);
-            txtInfo.Text =  analysis.getFrame(e.RowIndex).getInfo();
+            txtInfo.Text =  analysis.getFrame((int)dtgTabulka.Rows[e.RowIndex].Cells[0].Value-1).getInfo();
 
         }
 
@@ -157,6 +176,25 @@ namespace NetworkAnalzyer
         private void txtHexPole_Resize(object sender, EventArgs e)
         {
             txtHexPole.Text = formatuj(txtHexPole.Text);
+        }
+
+        private void zatvorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            analysis = new Analysis();
+            listBox.DataSource = null;
+            dtgTabulka.DataSource = null;
+            txtInfo.Text = "";
+            txtHexPole.Text = "";
+        }
+
+        private void koniecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void oProgrameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new About().ShowDialog();
         }
 
     }

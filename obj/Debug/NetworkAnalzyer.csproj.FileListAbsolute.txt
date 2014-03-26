@@ -15,3 +15,4 @@ E:\GitHub\NetworkAnalyzer\obj\Debug\NetworkAnalzyer.Properties.Resources.resourc
 E:\GitHub\NetworkAnalyzer\obj\Debug\NetworkAnalzyer.csproj.GenerateResource.Cache
 E:\GitHub\NetworkAnalyzer\obj\Debug\NetworkAnalzyer.exe
 E:\GitHub\NetworkAnalyzer\obj\Debug\NetworkAnalzyer.pdb
+E:\GitHub\NetworkAnalyzer\obj\Debug\NetworkAnalzyer.About.resources

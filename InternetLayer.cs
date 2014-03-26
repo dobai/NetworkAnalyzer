@@ -15,6 +15,8 @@ namespace NetworkAnalzyer
         private string sourceIP;
         private string destinationIP;
 
+        //arp (rarp) dorobit
+
         public string SourceIP { get { return sourceIP; } }
         public string DestinationIP { get { return destinationIP; } }
         public InternetLayer(Byte[] packet, int protocol)
@@ -26,22 +28,22 @@ namespace NetworkAnalzyer
                 sourceIP = getSourceIP();
             }
         }
-        private string getSourceIP()
-        {
-            string IP = "";
-            IP += packet[13].ToString("D") + ".";
-            IP += packet[14].ToString("D") + ".";
-            IP += packet[15].ToString("D") + ".";
-            IP += packet[16].ToString("D");
-            return IP;
-        }
         private string getDestinationIP()
         {
             string IP = "";
+            IP += packet[12].ToString("D") + ".";
+            IP += packet[13].ToString("D") + ".";
+            IP += packet[14].ToString("D") + ".";
+            IP += packet[15].ToString("D");
+            return IP;
+        }
+        private string getSourceIP()
+        {
+            string IP = "";
+            IP += packet[16].ToString("D") + ".";
             IP += packet[17].ToString("D") + ".";
             IP += packet[18].ToString("D") + ".";
-            IP += packet[19].ToString("D") + ".";
-            IP += packet[20].ToString("D");
+            IP += packet[19].ToString("D");
             return IP;
         }
 
