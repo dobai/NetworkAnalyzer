@@ -106,6 +106,7 @@ namespace NetworkAnalzyer
             loadRecentlyOpened();
             lblStatus.Text = "Pripravený";
             bgbNacitaj.Visible = false;
+            zatvorToolStripMenuItem.Enabled = true;
         }
 
         private void otvoritToolStripMenuItem_Click(object sender, EventArgs e)
@@ -185,6 +186,7 @@ namespace NetworkAnalzyer
             dtgTabulka.DataSource = null;
             txtInfo.Text = "";
             txtHexPole.Text = "";
+            zatvorToolStripMenuItem.Enabled = false;
         }
 
         private void koniecToolStripMenuItem_Click(object sender, EventArgs e)

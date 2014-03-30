@@ -86,7 +86,8 @@ namespace NetworkAnalzyer
             foreach (Frame f in communication)
             {
                 if (f.internet.SourceIP != null)
-                    bytes[list.FindIndex(x => x.StartsWith(f.internet.SourceIP))] += f.networkInterface.Lenght;
+                    //bytes[list.FindIndex(x => x.StartsWith(f.internet.SourceIP))] += f.networkInterface.Lenght;
+                    bytes[list.FindIndex(item => item == f.internet.SourceIP)] += f.networkInterface.Lenght;
             }
             return list[bytes.ToList().IndexOf(bytes.Max())] + "    (" + bytes.Max() + " B)";
         }

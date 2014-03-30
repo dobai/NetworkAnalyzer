@@ -35,6 +35,8 @@
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bgbNacitaj = new System.Windows.Forms.ToolStripProgressBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtAdresa = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.listBox = new System.Windows.Forms.ListBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.súborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,15 +54,13 @@
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.oProgrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.paketylistBox = new System.Windows.Forms.ListBox();
             this.dlgSubor = new System.Windows.Forms.OpenFileDialog();
-            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtAdresa = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTabulka)).BeginInit();
             this.staBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -68,11 +68,11 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgTabulka
@@ -93,7 +93,7 @@
             this.dtgTabulka.ReadOnly = true;
             this.dtgTabulka.RowHeadersVisible = false;
             this.dtgTabulka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgTabulka.Size = new System.Drawing.Size(547, 159);
+            this.dtgTabulka.Size = new System.Drawing.Size(547, 158);
             this.dtgTabulka.TabIndex = 0;
             this.dtgTabulka.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTabulka_RowEnter);
             // 
@@ -106,7 +106,7 @@
             this.txtHexPole.Name = "txtHexPole";
             this.txtHexPole.ReadOnly = true;
             this.txtHexPole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtHexPole.Size = new System.Drawing.Size(366, 165);
+            this.txtHexPole.Size = new System.Drawing.Size(366, 166);
             this.txtHexPole.TabIndex = 3;
             this.txtHexPole.WordWrap = false;
             this.txtHexPole.Resize += new System.EventHandler(this.txtHexPole_Resize);
@@ -162,8 +162,27 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 150;
             this.splitContainer1.Size = new System.Drawing.Size(727, 390);
-            this.splitContainer1.SplitterDistance = 189;
+            this.splitContainer1.SplitterDistance = 188;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // txtAdresa
+            // 
+            this.txtAdresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtAdresa.Location = new System.Drawing.Point(12, 165);
+            this.txtAdresa.Name = "txtAdresa";
+            this.txtAdresa.ReadOnly = true;
+            this.txtAdresa.Size = new System.Drawing.Size(150, 20);
+            this.txtAdresa.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 136);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(150, 26);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "IP adresa s najväčším počtom\r\nodvysielaných bajtov:";
             // 
             // listBox
             // 
@@ -173,7 +192,7 @@
             this.listBox.IntegralHeight = false;
             this.listBox.Location = new System.Drawing.Point(12, 27);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(150, 107);
+            this.listBox.Size = new System.Drawing.Size(150, 106);
             this.listBox.TabIndex = 2;
             // 
             // menuStrip
@@ -210,6 +229,7 @@
             // 
             // zatvorToolStripMenuItem
             // 
+            this.zatvorToolStripMenuItem.Enabled = false;
             this.zatvorToolStripMenuItem.Name = "zatvorToolStripMenuItem";
             this.zatvorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zatvorToolStripMenuItem.Text = "Zatvor";
@@ -309,62 +329,35 @@
             this.oProgrameToolStripMenuItem.Text = "O programe...";
             this.oProgrameToolStripMenuItem.Click += new System.EventHandler(this.oProgrameToolStripMenuItem_Click);
             // 
-            // splitContainer2
+            // checkBox1
             // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.Location = new System.Drawing.Point(12, 3);
-            this.splitContainer2.Name = "splitContainer2";
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(632, 176);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(83, 17);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "automaticky";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // splitContainer2.Panel1
+            // label1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.txtInfo);
-            this.splitContainer2.Panel1MinSize = 200;
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.paketylistBox);
-            this.splitContainer2.Panel2.Controls.Add(this.txtHexPole);
-            this.splitContainer2.Panel2MinSize = 320;
-            this.splitContainer2.Size = new System.Drawing.Size(703, 165);
-            this.splitContainer2.SplitterDistance = 333;
-            this.splitContainer2.TabIndex = 18;
-            // 
-            // txtInfo
-            // 
-            this.txtInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtInfo.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtInfo.Location = new System.Drawing.Point(0, 0);
-            this.txtInfo.Multiline = true;
-            this.txtInfo.Name = "txtInfo";
-            this.txtInfo.ReadOnly = true;
-            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInfo.Size = new System.Drawing.Size(333, 165);
-            this.txtInfo.TabIndex = 17;
-            this.txtInfo.WordWrap = false;
-            // 
-            // paketylistBox
-            // 
-            this.paketylistBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.paketylistBox.Enabled = false;
-            this.paketylistBox.FormattingEnabled = true;
-            this.paketylistBox.IntegralHeight = false;
-            this.paketylistBox.Location = new System.Drawing.Point(0, 0);
-            this.paketylistBox.Name = "paketylistBox";
-            this.paketylistBox.Size = new System.Drawing.Size(366, 165);
-            this.paketylistBox.TabIndex = 4;
-            this.paketylistBox.Visible = false;
-            // 
-            // dlgSubor
-            // 
-            this.dlgSubor.FileName = "openFileDialog1";
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(492, 177);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Počet stĺpcov:";
             // 
             // numericUpDown
             // 
             this.numericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown.Enabled = false;
-            this.numericUpDown.Location = new System.Drawing.Point(574, 174);
+            this.numericUpDown.Location = new System.Drawing.Point(574, 175);
             this.numericUpDown.Maximum = new decimal(new int[] {
             16,
             0,
@@ -385,48 +378,56 @@
             0});
             this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
-            // label1
+            // splitContainer2
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(492, 176);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Počet stĺpcov:";
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer2.Location = new System.Drawing.Point(12, 3);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // checkBox1
+            // splitContainer2.Panel1
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(632, 175);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(83, 17);
-            this.checkBox1.TabIndex = 21;
-            this.checkBox1.Text = "automaticky";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.splitContainer2.Panel1.Controls.Add(this.txtInfo);
+            this.splitContainer2.Panel1MinSize = 200;
             // 
-            // label2
+            // splitContainer2.Panel2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 137);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 26);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "IP adresa s najväčším počtom\r\nodvysielaných bajtov:";
+            this.splitContainer2.Panel2.Controls.Add(this.paketylistBox);
+            this.splitContainer2.Panel2.Controls.Add(this.txtHexPole);
+            this.splitContainer2.Panel2MinSize = 320;
+            this.splitContainer2.Size = new System.Drawing.Size(703, 166);
+            this.splitContainer2.SplitterDistance = 333;
+            this.splitContainer2.TabIndex = 18;
             // 
-            // txtAdresa
+            // txtInfo
             // 
-            this.txtAdresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtAdresa.Location = new System.Drawing.Point(12, 166);
-            this.txtAdresa.Name = "txtAdresa";
-            this.txtAdresa.ReadOnly = true;
-            this.txtAdresa.Size = new System.Drawing.Size(150, 20);
-            this.txtAdresa.TabIndex = 4;
+            this.txtInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtInfo.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtInfo.Location = new System.Drawing.Point(0, 0);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ReadOnly = true;
+            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtInfo.Size = new System.Drawing.Size(333, 166);
+            this.txtInfo.TabIndex = 17;
+            this.txtInfo.WordWrap = false;
+            // 
+            // paketylistBox
+            // 
+            this.paketylistBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paketylistBox.Enabled = false;
+            this.paketylistBox.FormattingEnabled = true;
+            this.paketylistBox.IntegralHeight = false;
+            this.paketylistBox.Location = new System.Drawing.Point(0, 0);
+            this.paketylistBox.Name = "paketylistBox";
+            this.paketylistBox.Size = new System.Drawing.Size(366, 166);
+            this.paketylistBox.TabIndex = 4;
+            this.paketylistBox.Visible = false;
+            // 
+            // dlgSubor
+            // 
+            this.dlgSubor.FileName = "openFileDialog1";
             // 
             // NetworkAnalzyer
             // 
@@ -453,13 +454,13 @@
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
