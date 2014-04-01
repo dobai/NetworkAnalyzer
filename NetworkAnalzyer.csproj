@@ -82,7 +82,7 @@
     </Compile>
     <Compile Include="Analysiscs.cs" />
     <Compile Include="ApplicationLayer.cs" />
-    <Compile Include="Data.cs" />
+    <Compile Include="Communication.cs" />
     <Compile Include="NetworkAnalzyer.cs">
       <SubType>Form</SubType>
     </Compile>

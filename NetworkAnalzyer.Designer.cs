@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetworkAnalzyer));
-            this.dtgTabulka = new System.Windows.Forms.DataGridView();
+            this.dtgRamce = new System.Windows.Forms.DataGridView();
             this.txtHexPole = new System.Windows.Forms.TextBox();
             this.staBar = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bgbNacitaj = new System.Windows.Forms.ToolStripProgressBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txtAdresa = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.listBox = new System.Windows.Forms.ListBox();
+            this.lblAdresa = new System.Windows.Forms.Label();
+            this.lstIPcky = new System.Windows.Forms.ListBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.súborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otvoritToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,9 +59,11 @@
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtInfo = new System.Windows.Forms.TextBox();
-            this.paketylistBox = new System.Windows.Forms.ListBox();
+            this.lstRamce = new System.Windows.Forms.ListBox();
             this.dlgSubor = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgTabulka)).BeginInit();
+            this.dtgKomunikacie = new System.Windows.Forms.DataGridView();
+            this.lstProtokoly = new System.Windows.Forms.ListBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRamce)).BeginInit();
             this.staBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -73,29 +75,30 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgKomunikacie)).BeginInit();
             this.SuspendLayout();
             // 
-            // dtgTabulka
+            // dtgRamce
             // 
-            this.dtgTabulka.AllowUserToAddRows = false;
-            this.dtgTabulka.AllowUserToDeleteRows = false;
-            this.dtgTabulka.AllowUserToResizeRows = false;
-            this.dtgTabulka.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtgRamce.AllowUserToAddRows = false;
+            this.dtgRamce.AllowUserToDeleteRows = false;
+            this.dtgRamce.AllowUserToResizeRows = false;
+            this.dtgRamce.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgTabulka.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dtgTabulka.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dtgTabulka.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgTabulka.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dtgTabulka.Location = new System.Drawing.Point(168, 27);
-            this.dtgTabulka.MultiSelect = false;
-            this.dtgTabulka.Name = "dtgTabulka";
-            this.dtgTabulka.ReadOnly = true;
-            this.dtgTabulka.RowHeadersVisible = false;
-            this.dtgTabulka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgTabulka.Size = new System.Drawing.Size(547, 158);
-            this.dtgTabulka.TabIndex = 0;
-            this.dtgTabulka.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTabulka_RowEnter);
+            this.dtgRamce.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dtgRamce.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dtgRamce.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgRamce.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dtgRamce.Location = new System.Drawing.Point(168, 27);
+            this.dtgRamce.MultiSelect = false;
+            this.dtgRamce.Name = "dtgRamce";
+            this.dtgRamce.ReadOnly = true;
+            this.dtgRamce.RowHeadersVisible = false;
+            this.dtgRamce.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgRamce.Size = new System.Drawing.Size(547, 158);
+            this.dtgRamce.TabIndex = 0;
+            this.dtgRamce.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTabulka_RowEnter);
             // 
             // txtHexPole
             // 
@@ -146,10 +149,12 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.lstProtokoly);
+            this.splitContainer1.Panel1.Controls.Add(this.dtgKomunikacie);
             this.splitContainer1.Panel1.Controls.Add(this.txtAdresa);
-            this.splitContainer1.Panel1.Controls.Add(this.label2);
-            this.splitContainer1.Panel1.Controls.Add(this.listBox);
-            this.splitContainer1.Panel1.Controls.Add(this.dtgTabulka);
+            this.splitContainer1.Panel1.Controls.Add(this.lblAdresa);
+            this.splitContainer1.Panel1.Controls.Add(this.lstIPcky);
+            this.splitContainer1.Panel1.Controls.Add(this.dtgRamce);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip);
             this.splitContainer1.Panel1MinSize = 100;
             // 
@@ -174,26 +179,26 @@
             this.txtAdresa.Size = new System.Drawing.Size(150, 20);
             this.txtAdresa.TabIndex = 4;
             // 
-            // label2
+            // lblAdresa
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 136);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 26);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "IP adresa s najväčším počtom\r\nodvysielaných bajtov:";
+            this.lblAdresa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAdresa.AutoSize = true;
+            this.lblAdresa.Location = new System.Drawing.Point(12, 136);
+            this.lblAdresa.Name = "lblAdresa";
+            this.lblAdresa.Size = new System.Drawing.Size(150, 26);
+            this.lblAdresa.TabIndex = 3;
+            this.lblAdresa.Text = "IP adresa s najväčším počtom\r\nodvysielaných bajtov:";
             // 
-            // listBox
+            // lstIPcky
             // 
-            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstIPcky.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox.FormattingEnabled = true;
-            this.listBox.IntegralHeight = false;
-            this.listBox.Location = new System.Drawing.Point(12, 27);
-            this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(150, 106);
-            this.listBox.TabIndex = 2;
+            this.lstIPcky.FormattingEnabled = true;
+            this.lstIPcky.IntegralHeight = false;
+            this.lstIPcky.Location = new System.Drawing.Point(12, 27);
+            this.lstIPcky.Name = "lstIPcky";
+            this.lstIPcky.Size = new System.Drawing.Size(150, 106);
+            this.lstIPcky.TabIndex = 2;
             // 
             // menuStrip
             // 
@@ -280,7 +285,6 @@
             // výpisKomunikácieToolStripMenuItem
             // 
             this.výpisKomunikácieToolStripMenuItem.CheckOnClick = true;
-            this.výpisKomunikácieToolStripMenuItem.Enabled = false;
             this.výpisKomunikácieToolStripMenuItem.Name = "výpisKomunikácieToolStripMenuItem";
             this.výpisKomunikácieToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.výpisKomunikácieToolStripMenuItem.Text = "Výpis komunikácie";
@@ -393,7 +397,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.paketylistBox);
+            this.splitContainer2.Panel2.Controls.Add(this.lstRamce);
             this.splitContainer2.Panel2.Controls.Add(this.txtHexPole);
             this.splitContainer2.Panel2MinSize = 320;
             this.splitContainer2.Size = new System.Drawing.Size(703, 166);
@@ -413,21 +417,55 @@
             this.txtInfo.TabIndex = 17;
             this.txtInfo.WordWrap = false;
             // 
-            // paketylistBox
+            // lstRamce
             // 
-            this.paketylistBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.paketylistBox.Enabled = false;
-            this.paketylistBox.FormattingEnabled = true;
-            this.paketylistBox.IntegralHeight = false;
-            this.paketylistBox.Location = new System.Drawing.Point(0, 0);
-            this.paketylistBox.Name = "paketylistBox";
-            this.paketylistBox.Size = new System.Drawing.Size(366, 166);
-            this.paketylistBox.TabIndex = 4;
-            this.paketylistBox.Visible = false;
+            this.lstRamce.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstRamce.Enabled = false;
+            this.lstRamce.FormattingEnabled = true;
+            this.lstRamce.IntegralHeight = false;
+            this.lstRamce.Location = new System.Drawing.Point(0, 0);
+            this.lstRamce.Name = "lstRamce";
+            this.lstRamce.Size = new System.Drawing.Size(366, 166);
+            this.lstRamce.TabIndex = 4;
+            this.lstRamce.Visible = false;
             // 
             // dlgSubor
             // 
             this.dlgSubor.FileName = "openFileDialog1";
+            // 
+            // dtgKomunikacie
+            // 
+            this.dtgKomunikacie.AllowUserToAddRows = false;
+            this.dtgKomunikacie.AllowUserToDeleteRows = false;
+            this.dtgKomunikacie.AllowUserToResizeRows = false;
+            this.dtgKomunikacie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgKomunikacie.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dtgKomunikacie.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dtgKomunikacie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgKomunikacie.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dtgKomunikacie.Location = new System.Drawing.Point(168, 27);
+            this.dtgKomunikacie.MultiSelect = false;
+            this.dtgKomunikacie.Name = "dtgKomunikacie";
+            this.dtgKomunikacie.ReadOnly = true;
+            this.dtgKomunikacie.RowHeadersVisible = false;
+            this.dtgKomunikacie.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgKomunikacie.Size = new System.Drawing.Size(547, 158);
+            this.dtgKomunikacie.TabIndex = 5;
+            this.dtgKomunikacie.Visible = false;
+            // 
+            // lstProtokoly
+            // 
+            this.lstProtokoly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstProtokoly.FormattingEnabled = true;
+            this.lstProtokoly.IntegralHeight = false;
+            this.lstProtokoly.Location = new System.Drawing.Point(12, 27);
+            this.lstProtokoly.Name = "lstProtokoly";
+            this.lstProtokoly.Size = new System.Drawing.Size(150, 158);
+            this.lstProtokoly.TabIndex = 6;
+            this.lstProtokoly.Visible = false;
             // 
             // NetworkAnalzyer
             // 
@@ -443,7 +481,7 @@
             this.Name = "NetworkAnalzyer";
             this.Text = "Sieťový analyzátor";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgTabulka)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRamce)).EndInit();
             this.staBar.ResumeLayout(false);
             this.staBar.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -461,6 +499,7 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgKomunikacie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,7 +507,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dtgTabulka;
+        private System.Windows.Forms.DataGridView dtgRamce;
         private System.Windows.Forms.TextBox txtHexPole;
         private System.Windows.Forms.StatusStrip staBar;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
@@ -493,13 +532,15 @@
         private System.Windows.Forms.ToolStripMenuItem pomocToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem oProgrameToolStripMenuItem;
-        private System.Windows.Forms.ListBox paketylistBox;
+        private System.Windows.Forms.ListBox lstRamce;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.ListBox lstIPcky;
         private System.Windows.Forms.TextBox txtAdresa;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblAdresa;
+        private System.Windows.Forms.ListBox lstProtokoly;
+        private System.Windows.Forms.DataGridView dtgKomunikacie;
 
     }
 }

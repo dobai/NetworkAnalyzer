@@ -61,18 +61,32 @@ namespace NetworkAnalzyer
 
         private void výpisRámcovToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            paketylistBox.Visible = false;
+            lstRamce.Visible = false;
+            lstProtokoly.Visible = false;
+            dtgKomunikacie.Visible = false;
+            lstIPcky.Visible = true;
             txtHexPole.Visible = true;
+            dtgRamce.Visible = true;
+            txtAdresa.Visible = true;
+            lblAdresa.Visible = true;
             výpisRámcovToolStripMenuItem.Checked = true;
             výpisKomunikácieToolStripMenuItem.Checked = false;
+            analyzujRamce();
         }
 
         private void výpisKomunikácieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            paketylistBox.Visible = true;
+            lstRamce.Visible = true;
+            lstProtokoly.Visible = true;
+            dtgKomunikacie.Visible = true;
+            lstIPcky.Visible = false;
             txtHexPole.Visible = false;
+            dtgRamce.Visible = false;
+            txtAdresa.Visible = false;
+            lblAdresa.Visible = false;
             výpisRámcovToolStripMenuItem.Checked = false;
             výpisKomunikácieToolStripMenuItem.Checked = true;
+            analyzujKomunikaciu();
         }
 
         private void statusStripMenuItem_Click(object sender, EventArgs e)
@@ -89,17 +103,36 @@ namespace NetworkAnalzyer
             }
         }
 
+        private void analyzujRamce()
+        {
+            dtgRamce.DataSource = analysis.getDataTableFrames();
+            dtgRamce.AutoResizeColumns();
+            dtgRamce.Columns[dtgRamce.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            lstIPcky.DataSource = analysis.getIPList();
+            txtAdresa.Text = analysis.getMaxIP();
+
+        }
+
+        private void analyzujKomunikaciu()
+        {
+            dtgKomunikacie.DataSource = analysis.getDataTableCommunications();
+            dtgKomunikacie.AutoResizeColumns();
+            dtgKomunikacie.Columns[dtgRamce.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            lstProtokoly.DataSource = analysis.getProtocols();
+        }
+
         private void otvor(string cesta)
         {
             lblStatus.Text = "Pracujem...";
             bgbNacitaj.Visible = true;
             zatvorToolStripMenuItem_Click(this, new EventArgs());
             analysis.analyse(cesta, 0);
-            dtgTabulka.DataSource = analysis.getDataTable();
-            dtgTabulka.AutoResizeColumns();
-            dtgTabulka.Columns[dtgTabulka.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            listBox.DataSource = analysis.getIPList();
-            txtAdresa.Text = analysis.getMaxIP();
+            if (výpisRámcovToolStripMenuItem.Checked)
+                analyzujRamce();
+            else
+                analyzujKomunikaciu();
+
+            analyzujRamce();
             this.Text = "Sieťový analyzátor - " + Path.GetFileName (cesta);
             Properties.Settings.Default.RecentlyOpened.Remove(cesta);
             Properties.Settings.Default.RecentlyOpened.Add(cesta);
@@ -153,9 +186,9 @@ namespace NetworkAnalzyer
 
         private void dtgTabulka_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            string s = BitConverter.ToString(analysis.getFrame(e.RowIndex).Raw);
-            txtHexPole.Text = formatuj(s);
-            txtInfo.Text =  analysis.getFrame((int)dtgTabulka.Rows[e.RowIndex].Cells[0].Value-1).getInfo();
+            //string s = BitConverter.ToString(analysis.getFrame(e.RowIndex).Raw);
+            //txtHexPole.Text = formatuj(s);
+            //txtInfo.Text =  analysis.getFrame((int)dtgTabulka.Rows[e.RowIndex].Cells[0].Value-1).getInfo();
 
         }
 
@@ -182,8 +215,8 @@ namespace NetworkAnalzyer
         private void zatvorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             analysis = new Analysis();
-            listBox.DataSource = null;
-            dtgTabulka.DataSource = null;
+            lstIPcky.DataSource = null;
+            dtgRamce.DataSource = null;
             txtInfo.Text = "";
             txtHexPole.Text = "";
             zatvorToolStripMenuItem.Enabled = false;

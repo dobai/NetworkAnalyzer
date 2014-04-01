@@ -16,12 +16,12 @@ namespace NetworkAnalzyer
         private Byte[] raw;
         private int lenght;
         private int physicalLenght;
-        private int protocolID;
+        private int protocol;
         private string type;
         private string sourceMAC;
         private string destinationMAC;
 
-        public int ProtocolID { get { return protocolID; } }
+        public int Protocol { get { return protocol; } }
         public Byte[] Raw { get { return raw; } }
         public int Lenght { get { return lenght; } }
         public int PhysicalLenght { get { return physicalLenght; } }
@@ -65,15 +65,24 @@ namespace NetworkAnalzyer
         {
             if (packet[12] * 256 + packet[13] > 1500)
             {
-                protocolID = packet[12] * 256 + packet[13];
+                protocol = packet[12] * 256 + packet[13];
                 return "Ethernet II";
             }
             else if (packet[14] * 256 + packet[15] == 65535)
+            {
+                protocol = -1;
                 return "IEEE 802.3 - RAW";
+            }
             else if (packet[14] * 256 + packet[15] == 43690)
+            {
+                protocol = -1;
                 return "IEEE 802.3 - LLC - SNAP";
+            }
             else
+            {
+                protocol = -1;
                 return "IEEE 802.3 - LLC";
+            }
         }
         private string getSourceMAC()
         {
