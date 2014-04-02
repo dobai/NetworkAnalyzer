@@ -18,9 +18,11 @@ namespace NetworkAnalzyer
         private string destinationIP;
         private int operation;
         private int protocol;
+        private string foundMAC;
 
         public string SourceIP { get { return sourceIP; } }
         public string DestinationIP { get { return destinationIP; } }
+        public string FoundMAC { get { return foundMAC; } }
         public int Operation { get { return operation; } }
         public int Protocol { get { return protocol; } }
         public Byte[] Raw { get { return raw; } }
@@ -80,6 +82,11 @@ namespace NetworkAnalzyer
             sourceIP += packet[17].ToString("D");
 
             operation = packet[06] + packet[07];
+
+            foundMAC = "";
+            for (int i = 8; i < 14; i++)
+                foundMAC += packet[i].ToString("X2") + " ";
+            foundMAC.TrimEnd(' ');
 
             protocol = -1;
         }

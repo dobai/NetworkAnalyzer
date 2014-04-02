@@ -61,8 +61,9 @@
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtInfo = new System.Windows.Forms.TextBox();
-            this.dlgSubor = new System.Windows.Forms.OpenFileDialog();
             this.dtgRamceKomunikacia = new System.Windows.Forms.DataGridView();
+            this.dlgSubor = new System.Windows.Forms.OpenFileDialog();
+            this.všetkyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRamce)).BeginInit();
             this.staBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -322,6 +323,8 @@
             // výpisKomunikácieToolStripMenuItem
             // 
             this.výpisKomunikácieToolStripMenuItem.CheckOnClick = true;
+            this.výpisKomunikácieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.všetkyToolStripMenuItem});
             this.výpisKomunikácieToolStripMenuItem.Name = "výpisKomunikácieToolStripMenuItem";
             this.výpisKomunikácieToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.výpisKomunikácieToolStripMenuItem.Text = "Výpis komunikácie";
@@ -454,10 +457,6 @@
             this.txtInfo.TabIndex = 17;
             this.txtInfo.WordWrap = false;
             // 
-            // dlgSubor
-            // 
-            this.dlgSubor.FileName = "openFileDialog1";
-            // 
             // dtgRamceKomunikacia
             // 
             this.dtgRamceKomunikacia.AllowUserToAddRows = false;
@@ -480,6 +479,19 @@
             this.dtgRamceKomunikacia.TabIndex = 7;
             this.dtgRamceKomunikacia.Visible = false;
             this.dtgRamceKomunikacia.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRamceKomunikacia_RowEnter);
+            // 
+            // dlgSubor
+            // 
+            this.dlgSubor.FileName = "openFileDialog1";
+            // 
+            // všetkyToolStripMenuItem
+            // 
+            this.všetkyToolStripMenuItem.Checked = true;
+            this.všetkyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.všetkyToolStripMenuItem.Name = "všetkyToolStripMenuItem";
+            this.všetkyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.všetkyToolStripMenuItem.Text = "Všetky";
+            this.všetkyToolStripMenuItem.Click += new System.EventHandler(this.všetkyToolStripMenuItem_Click);
             // 
             // NetworkAnalzyer
             // 
@@ -556,6 +568,7 @@
         private System.Windows.Forms.ListBox lstProtokoly;
         private System.Windows.Forms.DataGridView dtgKomunikacie;
         private System.Windows.Forms.DataGridView dtgRamceKomunikacia;
+        private System.Windows.Forms.ToolStripMenuItem všetkyToolStripMenuItem;
 
     }
 }

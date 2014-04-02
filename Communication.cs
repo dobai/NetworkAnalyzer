@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NetworkAnalzyer
 {
-    public enum CommunicationStates {Listen, SynRecived, PartiallyEstablished, Established, CloseWait, PartiallyClosed, TimeWait, Closed}
+    public enum CommunicationStates {Listen, SynRecived, PartiallyEstablished, Established, WaitForAck, Closed}
     public enum Layers { NetworkInterface, Internet, Transport, Application }
 
     class Communication
@@ -20,7 +20,11 @@ namespace NetworkAnalzyer
         private string clientIP;
         private int protocol;
         private Layers layer;
-        private bool isClosed;
+        private bool isClosed1;
+        private bool isClosed2;
+        private string arpIP;
+        private string arpMAC;
+        private int icmpType;
         private CommunicationStates state;
         private List<Frame> frames = new List<Frame>();
 
@@ -29,8 +33,10 @@ namespace NetworkAnalzyer
         public int ClientPort { get { return clientPort; } }
         public string ServerIP { get { return serverIP; } }
         public string ClientIP { get { return clientIP; } }
+        public string ArpIP { get { return arpIP; } }
+        public int IcmpType { get { return icmpType; } }
+        public string ArpMAC { get { return arpMAC; } }
         public int Protocol { get { return protocol; } }
-        public bool IsClosed { get { return isClosed; } }
         public Layers Layer { get { return layer; } }
         public CommunicationStates State { get { return state; } }
         public List<Frame> Frames { get { return frames; } }
@@ -41,7 +47,8 @@ namespace NetworkAnalzyer
             this.id = id;
             state = CommunicationStates.Listen;
             layer = Layers.Application;
-            isClosed = false;
+            isClosed1 = false;
+            isClosed2 = false;
             this.serverIP = serverIP;
             this.clientIP = clientIP;
             this.serverPort = serverPort;
@@ -86,16 +93,58 @@ namespace NetworkAnalzyer
 
         public void addTCP(Frame f)
         {
-            if (f.transport.SynFlag && !f.transport.AckFlag && state==CommunicationStates.Listen)
+            if (f.transport.SynFlag && !f.transport.AckFlag && state == CommunicationStates.Listen)
+            {
                 state = CommunicationStates.SynRecived;
+                f.akykolvekText = CommunicationStates.SynRecived.ToString();
+            }
+
 
             if (f.transport.SynFlag && f.transport.AckFlag && state == CommunicationStates.SynRecived)
+            {
                 state = CommunicationStates.PartiallyEstablished;
+                f.akykolvekText = CommunicationStates.PartiallyEstablished.ToString();
+            }
 
-            if (!f.transport.SynFlag && !f.transport.AckFlag && state == CommunicationStates.PartiallyEstablished)
+            if (!f.transport.SynFlag && f.transport.AckFlag && state == CommunicationStates.PartiallyEstablished)
+            {
                 state = CommunicationStates.Established;
+                f.akykolvekText = CommunicationStates.Established.ToString();
+            }
+
+
+            if (f.transport.RstFlag)
+            {
+                state = CommunicationStates.Closed;
+                f.akykolvekText += "Reset ";
+            }
+            else if (f.transport.AckFlag && state == CommunicationStates.WaitForAck)
+            {
+                state = CommunicationStates.Closed;
+                f.akykolvekText += "Closed ";
+            }
+            else
+            {
+                if (f.transport.FinFlag && f.internet.SourceIP == serverIP)
+                {
+                    isClosed1 = true;
+                    f.akykolvekText += "Closed1stNode ";
+                }
+                else if (f.transport.FinFlag && f.internet.SourceIP == clientIP)
+                {
+                    isClosed2 = true;
+                    f.akykolvekText += "Closed2ndNode ";
+                }
+
+                if (isClosed1 && isClosed2)
+                {
+                    state = CommunicationStates.WaitForAck;
+                    f.akykolvekText += "WaitForAck";
+                }
+            }
 
             layer = Layers.Application;
+            //if (!(state == CommunicationStates.Listen))
             frames.Add(f);
         }
 
@@ -105,18 +154,20 @@ namespace NetworkAnalzyer
             {
                 if (f.internet.Operation == 1)
                 {
+                    arpIP = f.internet.DestinationIP;
                     state = CommunicationStates.Established;
                     frames.Add(f);
                 }
 
                 if (f.internet.Operation == 2 && state == CommunicationStates.Established)
                 {
+                    arpMAC = f.networkInterface.SourceMAC;
                     state = CommunicationStates.Closed;
+                    arpMAC = f.internet.FoundMAC;
                     frames.Add(f);
                 }
                 type = 2054;
                 layer = Layers.NetworkInterface;
-                frames.Add(f);
             }
         }
 
@@ -125,6 +176,7 @@ namespace NetworkAnalzyer
             state = CommunicationStates.Closed;
             type  = 1;
             layer = Layers.Internet;
+            icmpType = f.transport.IcmpType;
             frames.Add(f);
         }
 

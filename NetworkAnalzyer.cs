@@ -115,9 +115,9 @@ namespace NetworkAnalzyer
 
         private void analyzujKomunikaciu()
         {
-            dtgKomunikacie.DataSource = analysis.getDataTableCommunications(80);
+            dtgKomunikacie.DataSource = analysis.getDataTableCommunications(80, všetkyToolStripMenuItem.Checked);
             dtgKomunikacie.AutoResizeColumns();
-            dtgKomunikacie.Columns[dtgRamce.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dtgKomunikacie.Columns[dtgKomunikacie.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             lstProtokoly.DataSource = analysis.getProtocols();
         }
 
@@ -146,17 +146,17 @@ namespace NetworkAnalzyer
         {
             if (dlgSubor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                try
-                {
+                //try
+                //{
                     otvor(dlgSubor.FileName);
-                }
-                catch (Exception ex)
+                //}
+                /*catch (Exception ex)
                 {
                     bgbNacitaj.Visible = false;
                     this.Text = "Sieťový analyzátor";
                     MessageBox.Show("Pri otváraní súboru nastala chyba. \n Súbor neexistuje alebo je poškodený. \n\n" + ex.Message, "Chyba pri otváraní súboru", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblStatus.Text = "Pripravený";
-                }
+                }*/
             }
 
         }
@@ -208,7 +208,10 @@ namespace NetworkAnalzyer
         {
             analysis = new Analysis();
             lstIPcky.DataSource = null;
+            lstProtokoly.DataSource = null;
             dtgRamce.DataSource = null;
+            dtgKomunikacie.DataSource = null;
+            dtgRamceKomunikacia.DataSource = null;
             txtInfo.Text = "";
             txtHexPole.Text = "";
             zatvorToolStripMenuItem.Enabled = false;
@@ -226,6 +229,7 @@ namespace NetworkAnalzyer
 
         private void lstProtokoly_SelectedIndexChanged(object sender, EventArgs e)
         {
+            bool all = všetkyToolStripMenuItem.Checked;
             int protocol=0;
             switch(lstProtokoly.SelectedIndex)
             {
@@ -249,28 +253,34 @@ namespace NetworkAnalzyer
                     break;
                 case 6:
                     protocol = 69;
+                    all = true;
                     break;
                 case 7:
                     protocol = 1;
+                    all = true;
                     break;
                 case 8:
                     protocol = 2054;
+                    all = true;
                     break;
                 default:
                     break;
             }
-            dtgKomunikacie.DataSource = analysis.getDataTableCommunications(protocol);
+            dtgKomunikacie.DataSource = analysis.getDataTableCommunications(protocol, all);
+            dtgKomunikacie.Focus();
         }
 
         private void dtgRamceKomunikacia_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            txtInfo.Text = analysis.getFrameInfo((int)dtgRamceKomunikacia.Rows[e.RowIndex].Cells[0].Value - 1);
+            if (dtgRamceKomunikacia.Focused)
+                txtInfo.Text = analysis.getFrameInfo((int)dtgRamceKomunikacia.Rows[e.RowIndex].Cells[0].Value - 1);
         }
 
         private void dtgKomunikacie_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            dtgRamceKomunikacia.DataSource = analysis.getFrameList((int)dtgRamce.Rows[e.RowIndex].Cells[0].Value - 1);
+            dtgRamceKomunikacia.DataSource = analysis.getFrameList((int)dtgKomunikacie.Rows[e.RowIndex].Cells[0].Value - 1);
             dtgRamceKomunikacia.Update();
+            txtInfo.Text = analysis.getCommunicationInfo((int)dtgKomunikacie.Rows[e.RowIndex].Cells[0].Value - 1);
         }
 
         private void dtgTabulka_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -279,6 +289,12 @@ namespace NetworkAnalzyer
             txtHexPole.Text = formatuj(s);
             txtInfo.Text = analysis.getFrameInfo((int)dtgRamce.Rows[e.RowIndex].Cells[0].Value - 1);
 
+        }
+
+        private void všetkyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            všetkyToolStripMenuItem.Checked = !všetkyToolStripMenuItem.Checked;
+            lstProtokoly_SelectedIndexChanged(sender, e);
         }
 
     }

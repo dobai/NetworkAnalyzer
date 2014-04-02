@@ -128,9 +128,9 @@ namespace NetworkAnalzyer
                 foreach (Communication c in communication)
                 {
                     if (((c.ClientIP == f.internet.SourceIP && c.ServerIP == f.internet.DestinationIP)
-                    || (c.ServerIP == f.internet.SourceIP || c.ClientIP == f.internet.DestinationIP))
+                    || (c.ServerIP == f.internet.SourceIP && c.ClientIP == f.internet.DestinationIP))
                     && ((c.ClientPort == f.transport.SourcePort && c.ServerPort == f.transport.DestinationPort)
-                    || (c.ServerPort == f.transport.SourcePort || c.ClientPort == f.transport.DestinationPort))
+                    || (c.ServerPort == f.transport.SourcePort && c.ClientPort == f.transport.DestinationPort))
                     && c.Protocol == f.internet.Protocol
                     && c.State!=CommunicationStates.Closed)
                     {
@@ -195,6 +195,82 @@ namespace NetworkAnalzyer
             return s;
         }
 
+        public string getHistogram(Communication c)
+        {
+            int i;
+            string histogram = "";
+            int[,] fromTo = new int[10, 2];
+            int[] hist = new int[10];
+            for (i = 0; i < fromTo.Length/2; i++)
+            {
+                fromTo[i, 0] = (int)Math.Pow(2, i) * 10;
+                fromTo[i, 1] = (int)Math.Pow(2, i + 1) * 10 - 1;
+            }
+
+
+            foreach (Frame f in c.Frames)
+            {
+                for (int j = 0; j < fromTo.Length/2; j++)
+                {
+                    if (f.networkInterface.Lenght >= fromTo[j, 0] && f.networkInterface.Lenght <= fromTo[j, 1])
+                        hist[j]++;
+                }
+            }
+
+            i=0;
+            foreach(int n in hist)
+            {
+                histogram += "\t<" + Math.Pow(2, i) * 10 + ", " + (Math.Pow(2, i+1) * 10 - 1) + ">: \t" + n + Environment.NewLine;
+                i++;
+            }
+            return histogram;
+        }
+
+        public string getCommunicationInfo(int number)
+        {
+            string s="";
+            Communication c = getCommunication(number);
+            switch (c.Type)
+            {
+
+                case 2054:
+                    s = "";
+                    s += "Komunikácia " + c.Id + Environment.NewLine + Environment.NewLine;
+                    s += "typ komunikácie                         - " + getEthernetProtocolName(c.Type) + Environment.NewLine;
+                    s += "IP adresa ku ktorej sa hľadá MAC adresa - " + c.ArpIP + Environment.NewLine;
+                    s += "Nájdená MAC adresa                      - " + c.ArpMAC + Environment.NewLine;
+                    s += "Komunikácia je kompletná:               - " + ((c.State == CommunicationStates.Closed) ? "Áno" : "Nie") + Environment.NewLine;
+                    break;
+                case 1:
+                    s = "";
+                    s += "Komunikácia " + c.Id + Environment.NewLine + Environment.NewLine;
+                    s += "typ komunikácie - " + getIPProtocolName(c.Type) + Environment.NewLine;
+                    s += "typ správy      - " + c.IcmpType + Environment.NewLine;
+                    break;
+                case 80:
+                case 443:
+                case 23:
+                case 22:
+                case 21:
+                case 20:
+                    s = "";
+                    s += "Komunikácia " + c.Id + Environment.NewLine + Environment.NewLine;
+                    s += "Kyp komunikácie           - " + getPortName(c.Type) + Environment.NewLine;
+                    s += "Komunikácia je kompletná: - " + ((c.State == CommunicationStates.Closed) ? "Áno" : "Nie") + Environment.NewLine;
+                    if (c.State == CommunicationStates.Closed)
+                    {
+                        s += "Štatistika výskytu rámcov:" + Environment.NewLine;
+                        s += getHistogram(c);
+                    }
+                    break;
+                case 69:
+                    s += "Komunikácia " + c.Id + Environment.NewLine + Environment.NewLine;
+                    s += "typ komunikácie - " + getPortName(c.Type) + Environment.NewLine;
+                    break;
+            }
+            return s;
+        }
+
         public DataTable getDataTableFrames()
         {
             DataTable table = new DataTable();
@@ -213,8 +289,10 @@ namespace NetworkAnalzyer
             return table;
         }
 
-        public DataTable getDataTableCommunications(int protocol)
+        public DataTable getDataTableCommunications(int protocol, bool all)
         {
+            bool complete = false;
+            bool incomplete = false;
             DataTable table = new DataTable();
             table.Columns.Add("Id", typeof(int));
             table.Columns.Add("Typ", typeof(string));
@@ -223,6 +301,7 @@ namespace NetworkAnalzyer
             table.Columns.Add("Zdrojový port", typeof(string));
             table.Columns.Add("Cieľový port", typeof(string));
             table.Columns.Add("Transportný protokol", typeof(string));
+            table.Columns.Add("Kompletná komunikácia", typeof(bool));
             table.Columns.Add(" ", typeof(string));
 
             foreach (Communication c in communication)
@@ -249,7 +328,26 @@ namespace NetworkAnalzyer
                 string TransportProtocol = getIPProtocolName(c.Protocol);
 
                 if (c.Type == protocol)
-                    table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol);
+                {
+                    if (!all)
+                    {
+                        if (!complete && c.State == CommunicationStates.Closed)
+                        {
+                            table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, c.State == CommunicationStates.Closed);
+                            complete = true;
+                        }
+                        else if (!incomplete && c.State != CommunicationStates.Closed)
+                        {
+                            table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, c.State == CommunicationStates.Closed);
+                            incomplete = true;
+                        }
+                    }
+                    else 
+                    {
+                        table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, c.State == CommunicationStates.Closed);
+
+                    }
+                }
             }
             return table;
         }
@@ -271,13 +369,14 @@ namespace NetworkAnalzyer
             table.Columns.Add("Id", typeof(int));
             table.Columns.Add("Typ", typeof(string));
             table.Columns.Add("Dĺźka", typeof(string));
+            table.Columns.Add("Stav", typeof(string));
             table.Columns.Add(" ", typeof(string));
 
             Communication c = getCommunication(communication);
 
             foreach (Frame f in c.Frames)
             {
-                table.Rows.Add(f.Id, f.networkInterface.Type, f.networkInterface.Lenght);
+                table.Rows.Add(f.Id, f.networkInterface.Type, f.networkInterface.Lenght, f.akykolvekText);
             }
             return table;
         }

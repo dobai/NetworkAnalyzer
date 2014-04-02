@@ -16,6 +16,7 @@ namespace NetworkAnalzyer
         public InternetLayer internet;
         public TransportLayer transport;
         public ApplicationLayer application;
+        public string akykolvekText;
 
         public int Id { get { return id; } }
         public byte[] Raw { get { return raw; } }

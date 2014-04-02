@@ -15,6 +15,7 @@ namespace NetworkAnalzyer
         private Byte[] segment;
         private int sourcePort;
         private int destinationPort;
+        private int icmpType;
         private bool rstFlag;
         private bool synFlag;
         private bool finFlag;
@@ -24,6 +25,7 @@ namespace NetworkAnalzyer
 
         public int SourcePort { get { return sourcePort; } }
         public int DestinationPort { get { return destinationPort; } }
+        public int IcmpType { get { return icmpType; } }
         public bool RstFlag { get { return rstFlag; } }
         public bool AckFlag { get { return ackFlag; } }
         public bool SynFlag { get { return synFlag; } }
@@ -50,6 +52,9 @@ namespace NetworkAnalzyer
                 case 17:
                     UDP();
                     break;
+                case 1:
+                    ICMP();
+                    break;
             }
         }
 
@@ -71,6 +76,12 @@ namespace NetworkAnalzyer
             synFlag = (segment[13] & 2) != 0;
             rstFlag = (segment[13] & 4) != 0;
             ackFlag = (segment[13] & 16) != 0;
+        }
+        private void ICMP()
+        {
+            sourcePort = -1;
+            destinationPort = -1;
+            icmpType = segment[0];
         }
 
     }
