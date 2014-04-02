@@ -15,5 +15,8 @@
     <Setting Name="WellKnownPorts" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\Dropbox\4. semester\PKS\project\WellKnownPorts.csv</Value>
     </Setting>
+    <Setting Name="IcmpTypes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Dropbox\4. semester\PKS\project\IcmpTypes.csv</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

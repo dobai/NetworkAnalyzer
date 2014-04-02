@@ -71,5 +71,17 @@ namespace NetworkAnalzyer.Properties {
                 this["WellKnownPorts"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dropbox\\4. semester\\PKS\\project\\IcmpTypes.csv")]
+        public string IcmpTypes {
+            get {
+                return ((string)(this["IcmpTypes"]));
+            }
+            set {
+                this["IcmpTypes"] = value;
+            }
+        }
     }
 }

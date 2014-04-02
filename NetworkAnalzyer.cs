@@ -13,7 +13,6 @@ namespace NetworkAnalzyer
 {
     public partial class NetworkAnalzyer : Form
     {
-
         Analysis analysis;
         public NetworkAnalzyer()
         {
@@ -263,11 +262,20 @@ namespace NetworkAnalzyer
                     protocol = 2054;
                     all = true;
                     break;
+                case 9:
+                    protocol = -10;
+                    all = true;
+                    break;
+                case 10:
+                    protocol = -5;
+                    all = true;
+                    break;
                 default:
                     break;
             }
             dtgKomunikacie.DataSource = analysis.getDataTableCommunications(protocol, all);
             dtgKomunikacie.Focus();
+            lblStatus.Text = "Počet komunikácií: " + dtgKomunikacie.Rows.Count;
         }
 
         private void dtgRamceKomunikacia_RowEnter(object sender, DataGridViewCellEventArgs e)

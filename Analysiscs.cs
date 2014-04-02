@@ -28,6 +28,7 @@ namespace NetworkAnalzyer
 
     class Analysis
     {
+        private ArrayList incompleteFin;
         int countFrame = 1;
         int countCommunication = 1;
         private ArrayList frames;
@@ -35,6 +36,7 @@ namespace NetworkAnalzyer
         private ArrayList ethernetProtocols;
         private ArrayList ipProtocols;
         private ArrayList wellKnownPorts;
+        private ArrayList icmpTypes;
 
         public Analysis()
         {
@@ -43,6 +45,7 @@ namespace NetworkAnalzyer
             ethernetProtocols = new ArrayList();
             ipProtocols = new ArrayList();
             wellKnownPorts = new ArrayList();
+            icmpTypes = new ArrayList();
 
             try
             {
@@ -90,6 +93,25 @@ namespace NetworkAnalzyer
                         int id = Convert.ToInt32(line.Split(';')[0], 16);
                         string name = line.Split(';')[1];
                         wellKnownPorts.Add(new keyValue(id, name));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Súbor nie je možné načítať.\n\n" + e.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            try
+            {
+                using (StreamReader file = new StreamReader(Properties.Settings.Default.IcmpTypes))
+                {
+                    string line;
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        int id = Convert.ToInt32(line.Split(';')[0], 10);
+                        string name = line.Split(';')[1];
+                        icmpTypes.Add(new keyValue(id, name));
                     }
                 }
             }
@@ -239,13 +261,13 @@ namespace NetworkAnalzyer
                     s += "typ komunikácie                         - " + getEthernetProtocolName(c.Type) + Environment.NewLine;
                     s += "IP adresa ku ktorej sa hľadá MAC adresa - " + c.ArpIP + Environment.NewLine;
                     s += "Nájdená MAC adresa                      - " + c.ArpMAC + Environment.NewLine;
-                    s += "Komunikácia je kompletná:               - " + ((c.State == CommunicationStates.Closed) ? "Áno" : "Nie") + Environment.NewLine;
+                    s += "Komunikácia je kompletná:               - " + ((c.State == CommunicationStates.Closed && c.incomplete==0) ? "Áno" : "Nie") + Environment.NewLine;
                     break;
                 case 1:
                     s = "";
                     s += "Komunikácia " + c.Id + Environment.NewLine + Environment.NewLine;
                     s += "typ komunikácie - " + getIPProtocolName(c.Type) + Environment.NewLine;
-                    s += "typ správy      - " + c.IcmpType + Environment.NewLine;
+                    s += "typ správy      - " + getIcmpType(c.IcmpType) + Environment.NewLine;
                     break;
                 case 80:
                 case 443:
@@ -333,20 +355,31 @@ namespace NetworkAnalzyer
                     {
                         if (!complete && c.State == CommunicationStates.Closed)
                         {
-                            table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, c.State == CommunicationStates.Closed);
+                            table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, (c.State == CommunicationStates.Closed && c.incomplete == 0));
                             complete = true;
                         }
                         else if (!incomplete && c.State != CommunicationStates.Closed)
                         {
-                            table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, c.State == CommunicationStates.Closed);
+                            table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, (c.State == CommunicationStates.Closed && c.incomplete == 0));
                             incomplete = true;
                         }
                     }
                     else 
                     {
-                        table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, c.State == CommunicationStates.Closed);
+                        table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, (c.State == CommunicationStates.Closed && c.incomplete == 0));
 
                     }
+                }
+                if(protocol==-5)
+                {
+                    if(c.incomplete==1)
+                    {
+                        table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, (c.State == CommunicationStates.Closed && c.incomplete == 0));
+                    }
+                }
+                if(protocol==-10)
+                {
+                    table.Rows.Add(c.Id, Type, ServerIP, ClientIP, ServerPort, ClientPort, TransportProtocol, (c.State == CommunicationStates.Closed && c.incomplete == 0));
                 }
             }
             return table;
@@ -393,6 +426,8 @@ namespace NetworkAnalzyer
             list.Add("TFTP komunikácie");
             list.Add("ICMP komunikácie");
             list.Add("ARP komunikácie");
+            list.Add("Všetky komunikácie");
+            list.Add("Doimplementované zadanie");
             return list;
         }
         
@@ -443,6 +478,25 @@ namespace NetworkAnalzyer
                 return "";
             else
                 return "(" + id + ")";
+        }
+
+        public string getIcmpType(int id)
+        {
+            foreach (keyValue p in icmpTypes)
+            {
+                if (p.Id == id)
+                    return p.Name + " (" + p.Id + ")";
+            }
+            if (id == -1)
+                return "";
+            else
+                return "(" + id + ")";
+        }
+
+        public int getIncompleteFin()
+        {
+            return 0;
+          
         }
     }
 }
