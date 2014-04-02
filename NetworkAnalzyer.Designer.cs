@@ -35,6 +35,8 @@
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bgbNacitaj = new System.Windows.Forms.ToolStripProgressBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lstProtokoly = new System.Windows.Forms.ListBox();
+            this.dtgKomunikacie = new System.Windows.Forms.DataGridView();
             this.txtAdresa = new System.Windows.Forms.TextBox();
             this.lblAdresa = new System.Windows.Forms.Label();
             this.lstIPcky = new System.Windows.Forms.ListBox();
@@ -59,23 +61,22 @@
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtInfo = new System.Windows.Forms.TextBox();
-            this.lstRamce = new System.Windows.Forms.ListBox();
             this.dlgSubor = new System.Windows.Forms.OpenFileDialog();
-            this.dtgKomunikacie = new System.Windows.Forms.DataGridView();
-            this.lstProtokoly = new System.Windows.Forms.ListBox();
+            this.dtgRamceKomunikacia = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRamce)).BeginInit();
             this.staBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgKomunikacie)).BeginInit();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgKomunikacie)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRamceKomunikacia)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgRamce
@@ -169,6 +170,42 @@
             this.splitContainer1.Size = new System.Drawing.Size(727, 390);
             this.splitContainer1.SplitterDistance = 188;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // lstProtokoly
+            // 
+            this.lstProtokoly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstProtokoly.FormattingEnabled = true;
+            this.lstProtokoly.IntegralHeight = false;
+            this.lstProtokoly.Location = new System.Drawing.Point(12, 27);
+            this.lstProtokoly.Name = "lstProtokoly";
+            this.lstProtokoly.Size = new System.Drawing.Size(150, 158);
+            this.lstProtokoly.TabIndex = 6;
+            this.lstProtokoly.Visible = false;
+            this.lstProtokoly.SelectedIndexChanged += new System.EventHandler(this.lstProtokoly_SelectedIndexChanged);
+            // 
+            // dtgKomunikacie
+            // 
+            this.dtgKomunikacie.AllowUserToAddRows = false;
+            this.dtgKomunikacie.AllowUserToDeleteRows = false;
+            this.dtgKomunikacie.AllowUserToResizeRows = false;
+            this.dtgKomunikacie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgKomunikacie.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dtgKomunikacie.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dtgKomunikacie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgKomunikacie.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dtgKomunikacie.Location = new System.Drawing.Point(168, 27);
+            this.dtgKomunikacie.MultiSelect = false;
+            this.dtgKomunikacie.Name = "dtgKomunikacie";
+            this.dtgKomunikacie.ReadOnly = true;
+            this.dtgKomunikacie.RowHeadersVisible = false;
+            this.dtgKomunikacie.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgKomunikacie.Size = new System.Drawing.Size(547, 158);
+            this.dtgKomunikacie.TabIndex = 5;
+            this.dtgKomunikacie.Visible = false;
+            this.dtgKomunikacie.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgKomunikacie_RowEnter);
             // 
             // txtAdresa
             // 
@@ -397,7 +434,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.lstRamce);
+            this.splitContainer2.Panel2.Controls.Add(this.dtgRamceKomunikacia);
             this.splitContainer2.Panel2.Controls.Add(this.txtHexPole);
             this.splitContainer2.Panel2MinSize = 320;
             this.splitContainer2.Size = new System.Drawing.Size(703, 166);
@@ -417,55 +454,32 @@
             this.txtInfo.TabIndex = 17;
             this.txtInfo.WordWrap = false;
             // 
-            // lstRamce
-            // 
-            this.lstRamce.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstRamce.Enabled = false;
-            this.lstRamce.FormattingEnabled = true;
-            this.lstRamce.IntegralHeight = false;
-            this.lstRamce.Location = new System.Drawing.Point(0, 0);
-            this.lstRamce.Name = "lstRamce";
-            this.lstRamce.Size = new System.Drawing.Size(366, 166);
-            this.lstRamce.TabIndex = 4;
-            this.lstRamce.Visible = false;
-            // 
             // dlgSubor
             // 
             this.dlgSubor.FileName = "openFileDialog1";
             // 
-            // dtgKomunikacie
+            // dtgRamceKomunikacia
             // 
-            this.dtgKomunikacie.AllowUserToAddRows = false;
-            this.dtgKomunikacie.AllowUserToDeleteRows = false;
-            this.dtgKomunikacie.AllowUserToResizeRows = false;
-            this.dtgKomunikacie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtgRamceKomunikacia.AllowUserToAddRows = false;
+            this.dtgRamceKomunikacia.AllowUserToDeleteRows = false;
+            this.dtgRamceKomunikacia.AllowUserToResizeRows = false;
+            this.dtgRamceKomunikacia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgKomunikacie.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dtgKomunikacie.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dtgKomunikacie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgKomunikacie.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dtgKomunikacie.Location = new System.Drawing.Point(168, 27);
-            this.dtgKomunikacie.MultiSelect = false;
-            this.dtgKomunikacie.Name = "dtgKomunikacie";
-            this.dtgKomunikacie.ReadOnly = true;
-            this.dtgKomunikacie.RowHeadersVisible = false;
-            this.dtgKomunikacie.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgKomunikacie.Size = new System.Drawing.Size(547, 158);
-            this.dtgKomunikacie.TabIndex = 5;
-            this.dtgKomunikacie.Visible = false;
-            // 
-            // lstProtokoly
-            // 
-            this.lstProtokoly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstProtokoly.FormattingEnabled = true;
-            this.lstProtokoly.IntegralHeight = false;
-            this.lstProtokoly.Location = new System.Drawing.Point(12, 27);
-            this.lstProtokoly.Name = "lstProtokoly";
-            this.lstProtokoly.Size = new System.Drawing.Size(150, 158);
-            this.lstProtokoly.TabIndex = 6;
-            this.lstProtokoly.Visible = false;
+            this.dtgRamceKomunikacia.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dtgRamceKomunikacia.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dtgRamceKomunikacia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgRamceKomunikacia.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dtgRamceKomunikacia.Location = new System.Drawing.Point(0, 1);
+            this.dtgRamceKomunikacia.MultiSelect = false;
+            this.dtgRamceKomunikacia.Name = "dtgRamceKomunikacia";
+            this.dtgRamceKomunikacia.ReadOnly = true;
+            this.dtgRamceKomunikacia.RowHeadersVisible = false;
+            this.dtgRamceKomunikacia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgRamceKomunikacia.Size = new System.Drawing.Size(366, 166);
+            this.dtgRamceKomunikacia.TabIndex = 7;
+            this.dtgRamceKomunikacia.Visible = false;
+            this.dtgRamceKomunikacia.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRamceKomunikacia_RowEnter);
             // 
             // NetworkAnalzyer
             // 
@@ -490,6 +504,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgKomunikacie)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
@@ -499,7 +514,7 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgKomunikacie)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRamceKomunikacia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -532,7 +547,6 @@
         private System.Windows.Forms.ToolStripMenuItem pomocToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem oProgrameToolStripMenuItem;
-        private System.Windows.Forms.ListBox lstRamce;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -541,6 +555,7 @@
         private System.Windows.Forms.Label lblAdresa;
         private System.Windows.Forms.ListBox lstProtokoly;
         private System.Windows.Forms.DataGridView dtgKomunikacie;
+        private System.Windows.Forms.DataGridView dtgRamceKomunikacia;
 
     }
 }

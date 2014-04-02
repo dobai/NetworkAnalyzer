@@ -61,7 +61,7 @@ namespace NetworkAnalzyer
 
         private void výpisRámcovToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lstRamce.Visible = false;
+            dtgRamceKomunikacia.Visible = false;
             lstProtokoly.Visible = false;
             dtgKomunikacie.Visible = false;
             lstIPcky.Visible = true;
@@ -76,7 +76,7 @@ namespace NetworkAnalzyer
 
         private void výpisKomunikácieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lstRamce.Visible = true;
+            dtgRamceKomunikacia.Visible = true;
             lstProtokoly.Visible = true;
             dtgKomunikacie.Visible = true;
             lstIPcky.Visible = false;
@@ -115,7 +115,7 @@ namespace NetworkAnalzyer
 
         private void analyzujKomunikaciu()
         {
-            dtgKomunikacie.DataSource = analysis.getDataTableCommunications();
+            dtgKomunikacie.DataSource = analysis.getDataTableCommunications(80);
             dtgKomunikacie.AutoResizeColumns();
             dtgKomunikacie.Columns[dtgRamce.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             lstProtokoly.DataSource = analysis.getProtocols();
@@ -184,14 +184,6 @@ namespace NetworkAnalzyer
             return s;
         }
 
-        private void dtgTabulka_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            //string s = BitConverter.ToString(analysis.getFrame(e.RowIndex).Raw);
-            //txtHexPole.Text = formatuj(s);
-            //txtInfo.Text =  analysis.getFrame((int)dtgTabulka.Rows[e.RowIndex].Cells[0].Value-1).getInfo();
-
-        }
-
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
         {
             txtHexPole.Text = formatuj(txtHexPole.Text);
@@ -230,6 +222,63 @@ namespace NetworkAnalzyer
         private void oProgrameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new About().ShowDialog();
+        }
+
+        private void lstProtokoly_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int protocol=0;
+            switch(lstProtokoly.SelectedIndex)
+            {
+                case 0:
+                    protocol = 80;
+                    break;
+                case 1:
+                    protocol = 443;
+                    break;
+                case 2:
+                    protocol = 23;
+                    break;
+                case 3:
+                    protocol = 22;
+                    break;
+                case 4:
+                    protocol = 21;
+                    break;
+                case 5:
+                    protocol = 20;
+                    break;
+                case 6:
+                    protocol = 69;
+                    break;
+                case 7:
+                    protocol = 1;
+                    break;
+                case 8:
+                    protocol = 2054;
+                    break;
+                default:
+                    break;
+            }
+            dtgKomunikacie.DataSource = analysis.getDataTableCommunications(protocol);
+        }
+
+        private void dtgRamceKomunikacia_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            txtInfo.Text = analysis.getFrameInfo((int)dtgRamceKomunikacia.Rows[e.RowIndex].Cells[0].Value - 1);
+        }
+
+        private void dtgKomunikacie_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            dtgRamceKomunikacia.DataSource = analysis.getFrameList((int)dtgRamce.Rows[e.RowIndex].Cells[0].Value - 1);
+            dtgRamceKomunikacia.Update();
+        }
+
+        private void dtgTabulka_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            string s = BitConverter.ToString(analysis.getFrame(e.RowIndex).Raw);
+            txtHexPole.Text = formatuj(s);
+            txtInfo.Text = analysis.getFrameInfo((int)dtgRamce.Rows[e.RowIndex].Cells[0].Value - 1);
+
         }
 
     }

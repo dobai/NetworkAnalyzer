@@ -7,13 +7,13 @@
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Value>
     </Setting>
     <Setting Name="EthernetProtocolCodes" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Dropbox\4. semester\PKS\project\EthernetProtocolCodes.csv</Value>
+      <Value Profile="(Default)">C:\Dropbox\4. semester\PKS\project\EthernetProtocolCodes.csv</Value>
     </Setting>
     <Setting Name="IPProtocolCodes" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Dropbox\4. semester\PKS\project\IPProtocolCodes.csv</Value>
+      <Value Profile="(Default)">C:\Dropbox\4. semester\PKS\project\IPProtocolCodes.csv</Value>
     </Setting>
     <Setting Name="WellKnownPorts" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Dropbox\4. semester\PKS\project\WellKnownPorts.csv</Value>
+      <Value Profile="(Default)">C:\Dropbox\4. semester\PKS\project\WellKnownPorts.csv</Value>
     </Setting>
   </Settings>
 </SettingsFile>
