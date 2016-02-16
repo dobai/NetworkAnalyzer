@@ -1,0 +1,125 @@
+﻿a.banner:link {text-decoration: none;
+		color:#F5F3F5;}
+a.banner:visited {text-decoration: none;
+		color:#F5F3F5;}
+a.banner:hover {color:#ffffff;
+		text-decoration: none;}
+
+
+body {
+    padding-top: 65px;
+}
+
+a {
+    color: #AA3939;
+}
+
+.navbar-inverse {
+    background-color: #AA3939;
+    border-color: #C85C5C;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #EEE;
+}
+
+.navbar-inverse .navbar-brand {
+    color:#EEE;
+}
+
+.navbar-inverse .navbar-collapse, 
+.navbar-inverse .navbar-form {
+    border-color: #C85C5C;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-toggle:focus, 
+.navbar-inverse .navbar-toggle:hover {
+    color: #FFF;
+    background-color: #C85C5C;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:hover {
+    background-color: #AA3939;
+    color: #FFF;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-inverse .navbar-nav > a,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover {
+    background-color: #C85C5C;
+    color: #FFF;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #EEE;
+    background-color: #AA3939;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background-color: #AA3939;
+}
+
+.dropdown-menu>.active>a,
+.navbar-inverse .navbar-nav > .open > a {
+    background-color: #C85C5C;
+    color:#ffffff;
+ }
+
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus { 
+    text-decoration: none;
+    background-color: #AA3939;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #EEE;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+    border-color: #FFF;
+}
+
+.nav li:hover {
+    background-color: #AA3939;
+}
+
+a:visited {
+    color: #8C1D1D;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    color: white;
+    background-color: #C85C5C;
+    cursor: pointer;
+}
+
+.table thead tr th {
+    border-bottom-color: #AA3939;
+    border-bottom-width: 3px;
+}
+
+.thumbnail {
+    padding-top: 10px;
+    border-width: 3px;
+    border-color: #C85C5C;
+
+    border-radius: 0px;
+
+    margin: 15px;
+
+    background-color: #F5F3F5;
+
+    text-align:center;
+
+    height: 262px;
+}
+
+h1, h2, h3, h4, h5, h6 h7 {
+    color: #AA3939;
+}

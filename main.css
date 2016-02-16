@@ -1,0 +1,229 @@
+a.banner:link {text-decoration: none;
+		color:#F5F3F5;}
+a.banner:visited {text-decoration: none;
+		color:#F5F3F5;}
+a.banner:hover {color:#ffffff;
+		text-decoration: none;}
+
+
+body {
+    padding-top: 65px;
+}
+
+a {
+    color: #AA3939;
+}
+
+.navbar-inverse {
+    background-color: #AA3939;
+    border-color: #C85C5C;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #EEE;
+}
+
+.navbar-inverse .navbar-brand {
+    color:#EEE;
+}
+
+.navbar-inverse .navbar-collapse, 
+.navbar-inverse .navbar-form {
+    border-color: #C85C5C;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-toggle:focus, 
+.navbar-inverse .navbar-toggle:hover {
+    color: #FFF;
+    background-color: #C85C5C;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:hover {
+    background-color: #AA3939;
+    color: #FFF;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-inverse .navbar-nav > a,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover {
+    background-color: #C85C5C;
+    color: #FFF;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #EEE;
+    background-color: #AA3939;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background-color: #AA3939;
+}
+
+.dropdown-menu>.active>a,
+.navbar-inverse .navbar-nav > .open > a {
+    background-color: #C85C5C;
+    color:#ffffff;
+ }
+
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus { 
+    text-decoration: none;
+    background-color: #AA3939;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #EEE;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+    border-color: #FFF;
+}
+
+.nav li:hover {
+    background-color: #AA3939;
+}
+
+a:visited {
+    color: #8C1D1D;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    color: white;
+    background-color: #C85C5C;
+    cursor: pointer;
+}
+
+.table thead tr th {
+    border-bottom-color: #AA3939;
+    border-bottom-width: 3px;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #C85C5C;
+  border-color: #AA3939;
+}
+.btn-info:focus,
+.btn-info.focus {
+  color: #fff;
+  background-color: #C85C5C;
+  border-color: #AA3939;
+}
+.btn-info:hover {
+  color: #fff;
+  background-color: #E68787;
+  border-color: #C85C5C;
+}
+.btn-info:active,
+.btn-info.active,
+.open > .dropdown-toggle.btn-info {
+  color: #fff;
+  background-color: #E68787;
+  border-color: #C85C5C;
+}
+.btn-info.disabled:hover,
+.btn-info[disabled]:hover,
+fieldset[disabled] .btn-info:hover,
+.btn-info.disabled:focus,
+.btn-info[disabled]:focus,
+fieldset[disabled] .btn-info:focus,
+.btn-info.disabled.focus,
+.btn-info[disabled].focus,
+fieldset[disabled] .btn-info.focus {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.btn-info .badge {
+  color: #5bc0de;
+  background-color: #fff;
+}
+.thumbnail {
+    padding-top: 10px;
+    border-width: 3px;
+    border-color: #C85C5C;
+
+    border-radius: 0px;
+
+    margin: 15px;
+
+    background-color: #F5F3F5;
+
+    text-align:center;
+
+    height: 262px;
+}
+
+
+.thumbnail_new {
+    /*padding-top: 10px;    */
+    border-width: 1px;
+    border-color: #E0E0E0;
+
+    border-radius: 0px;
+
+    padding: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    background-color: #F5F3F5;
+
+    text-align:left;
+
+    /*height: 262px;*/
+}
+
+h1, h2, h3, h4, h5, h6 h7 {
+    color: #AA3939;
+}    
+    
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+.col-fixed {
+    /* custom width */
+    width:320px;
+}
+.col-min {
+    /* custom min width */
+    min-width:200px;
+}
+.col-max {
+    /* custom max width */
+    max-width:512px;
+}
+
+.caption {
+  margin: 0px;
+  display:inline-block;
+  vertical-align: top;
+  /*text-align:justify; */
+  width:300px;
+}
+
+.image {
+  vertical-align: top;
+  margin: 0px;
+  display:inline-block;
+  width:160px;
+}
+
+.navbar-logo {
+    float: left;
+    height: 50px;
+    padding: 0px;
+}
